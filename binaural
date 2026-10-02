@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Lanceur : sans argument → interface TUI, avec arguments → binaural.py (CLI).
+# Installation : ln -s "$PWD/binaural" ~/.local/bin/binaural
+set -euo pipefail
+dir="$(dirname "$(readlink -f "$0")")"
+if [ $# -eq 0 ]; then
+    exec uv run --quiet --script "$dir/tui.py"
+fi
+exec uv run --quiet --script "$dir/binaural.py" "$@"
